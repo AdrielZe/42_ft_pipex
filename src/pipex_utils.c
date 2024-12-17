@@ -6,7 +6,7 @@
 /*   By: asilveir <asilveir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:13:56 by asilveir          #+#    #+#             */
-/*   Updated: 2024/12/17 16:52:01 by asilveir         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:35:29 by asilveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,19 @@ void	free_paths(char **paths)
 	}
 	free(paths);
 }
+
 char	*search_valid_path(char *cmd, char **envp)
 {
-	int	i;
-	int	j;
-	char	**paths;
-	char	*current_path;	
-	char	*current_path_and_command;
+	char		**paths;
+	char		*current_path;	
+	char		*current_path_and_command;
+	int			i;
+	int			j;
 
 	j = 0;
 	if (access(cmd, F_OK | X_OK) == 0)
 		return (cmd);
-	i = search_for_path_index(envp);	
+	i = search_for_path_index(envp);
 	paths = ft_split(envp[i] + 5, ':');
 	if (!paths)
 		free_paths(paths);
@@ -56,12 +57,12 @@ char	*search_valid_path(char *cmd, char **envp)
 int	search_for_path_index(char **envp)
 {
 	int	i;
-	
+
 	i = 0;
 	while (envp && envp[i])
 	{
-		if(ft_strnstr(envp[i], "PATH", 4))
-			break;
+		if (ft_strnstr(envp[i], "PATH", 4))
+			break ;
 		i++;
 	}
 	return (i);
