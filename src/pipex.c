@@ -6,7 +6,7 @@
 /*   By: asilveir <asilveir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:32:34 by asilveir          #+#    #+#             */
-/*   Updated: 2025/01/06 10:29:05 by asilveir         ###   ########.fr       */
+/*   Updated: 2025/01/06 10:48:12 by asilveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	execute_command(char *argv, char **envp)
 	}
 	path = search_valid_path(command[0], envp);
 	if (!path)
-	{
-		perror("Path error. Command not found.");
 		exit(127);
-	}
 	if (execve(path, command, envp) == -1)
 	{
 		perror("Execve failed.");
@@ -43,7 +40,7 @@ void	child_proccess(int *fd, char **argv, char **envp)
 	in_file = open(argv[1], O_RDONLY, 0644);
 	if (in_file == -1)
 	{
-		perror("Error opening input file.");
+		perror("Error opening input file");
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
@@ -92,7 +89,7 @@ void	args_verification(int argc)
 {
 	if (argc < 5)
 	{
-		perror("Error!\nInvalid number of arguments.");
+		ft_putstr_fd("Error!\nInvalid number of arguments.", 1);
 		exit(EXIT_FAILURE);
 	}
 }
