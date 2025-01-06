@@ -1,7 +1,0 @@
-includes
-in.txt
-libft
-Makefile
-out.txt
-pipex
-src
