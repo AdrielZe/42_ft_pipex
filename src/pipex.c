@@ -6,7 +6,7 @@
 /*   By: asilveir <asilveir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:32:34 by asilveir          #+#    #+#             */
-/*   Updated: 2025/01/06 10:48:12 by asilveir         ###   ########.fr       */
+/*   Updated: 2025/01/06 11:01:35 by asilveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	main(int argc, char *argv[], char **envp)
 {
 	int	fd[2];
 	int	id;
-	int	status;
 
 	args_verification(argc);
 	if (pipe(fd) == -1)
