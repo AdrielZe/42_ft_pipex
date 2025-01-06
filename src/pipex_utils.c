@@ -6,11 +6,23 @@
 /*   By: asilveir <asilveir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:13:56 by asilveir          #+#    #+#             */
-/*   Updated: 2024/12/17 18:35:29 by asilveir         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:16:38 by asilveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./pipex.h"
+
+void	exit_if_invalid_path(char **cmd)
+{
+	if (cmd && cmd[0])
+	{
+		ft_putstr_fd("Pipex: command not found.", 2);
+		ft_putstr_fd(cmd[0], 2);
+		ft_putstr_fd("\n", 2);
+	}
+	free_cmd(cmd);
+	exit(127);
+}
 
 void	free_paths(char **paths)
 {
@@ -66,4 +78,20 @@ int	search_for_path_index(char **envp)
 		i++;
 	}
 	return (i);
+}
+
+void	free_cmd(char **cmd)
+{
+	int	i;
+
+	i = 0;
+	if (cmd)
+	{
+		while (cmd[i])
+		{
+			free(cmd[i]);
+			i++;
+		}
+		free(cmd);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: asilveir <asilveir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:14:00 by asilveir          #+#    #+#             */
-/*   Updated: 2025/01/06 10:53:48 by asilveir         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:15:27 by asilveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	child_proccess(int *fd, char **argv, char **envp);
 void	parent_proccess(int *fd, char **argv, char **envp);
 void	args_verification(int argc);
 void	free_paths(char **paths);
+void	free_cmd(char **cmd);
+void	exit_if_invalid_path(char **cmd);
 int		search_for_path_index(char **envp);
 char	*search_valid_path(char *cmd, char **envp);
 

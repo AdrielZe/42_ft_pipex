@@ -6,7 +6,7 @@
 /*   By: asilveir <asilveir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:32:34 by asilveir          #+#    #+#             */
-/*   Updated: 2025/01/06 11:01:35 by asilveir         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:17:08 by asilveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	execute_command(char *argv, char **envp)
 	}
 	path = search_valid_path(command[0], envp);
 	if (!path)
-		exit(127);
+		exit_if_invalid_path(&command[0]);
 	if (execve(path, command, envp) == -1)
 	{
 		perror("Execve failed.");
