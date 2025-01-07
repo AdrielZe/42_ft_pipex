@@ -6,7 +6,7 @@
 /*   By: asilveir <asilveir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:13:56 by asilveir          #+#    #+#             */
-/*   Updated: 2025/01/06 12:16:38 by asilveir         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:24:20 by asilveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	exit_if_invalid_path(char **cmd)
 {
 	if (cmd && cmd[0])
 	{
-		ft_putstr_fd("Pipex: command not found.", 2);
+		ft_putstr_fd("pipex: command not found: ", 2);
 		ft_putstr_fd(cmd[0], 2);
 		ft_putstr_fd("\n", 2);
 	}

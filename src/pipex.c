@@ -6,7 +6,7 @@
 /*   By: asilveir <asilveir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:32:34 by asilveir          #+#    #+#             */
-/*   Updated: 2025/01/06 12:17:08 by asilveir         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:36:06 by asilveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	execute_command(char *argv, char **envp)
 	command = ft_split(argv, ' ');
 	if (!command || !command[0])
 	{
-		perror("Command not found.");
+		perror("command not found: ");
 		exit(EXIT_FAILURE);
 	}
 	path = search_valid_path(command[0], envp);
@@ -28,7 +28,7 @@ void	execute_command(char *argv, char **envp)
 		exit_if_invalid_path(&command[0]);
 	if (execve(path, command, envp) == -1)
 	{
-		perror("Execve failed.");
+		perror("execve failed.");
 		exit(127);
 	}
 }
@@ -40,18 +40,18 @@ void	child_proccess(int *fd, char **argv, char **envp)
 	in_file = open(argv[1], O_RDONLY, 0644);
 	if (in_file == -1)
 	{
-		perror("Error opening input file");
+		perror("error opening input file");
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 	{
-		perror("Dup2 for fd[1] failed.");
+		perror("dup2 for fd[1] failed.");
 		exit(EXIT_FAILURE);
 	}
 	close(fd[1]);
 	if (dup2(in_file, STDIN_FILENO) == -1)
 	{
-		perror("Dup2 for in file failed.");
+		perror("dup2 for in file failed.");
 		exit(EXIT_FAILURE);
 	}
 	close(in_file);
@@ -66,18 +66,18 @@ void	parent_proccess(int *fd, char **argv, char **envp)
 	out_file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (out_file == -1)
 	{
-		perror("Error opening output file.");
+		perror("error opening output file.");
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 	{
-		perror("Dup2 for fd[0] failed.");
+		perror("dup2 for fd[0] failed.");
 		exit(127);
 	}
 	close(fd[0]);
 	if (dup2(out_file, STDOUT_FILENO) == -1)
 	{
-		perror("Dup2 for fd[1] failed.");
+		perror("dup2 for fd[1] failed.");
 		exit(127);
 	}
 	close(out_file);
@@ -87,9 +87,9 @@ void	parent_proccess(int *fd, char **argv, char **envp)
 
 void	args_verification(int argc)
 {
-	if (argc < 5)
+	if (argc != 5)
 	{
-		ft_putstr_fd("Error!\nInvalid number of arguments.", 1);
+		ft_putstr_fd("error!\ninvalid number of arguments.", 1);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -105,12 +105,15 @@ int	main(int argc, char *argv[], char **envp)
 	id = fork();
 	if (id == -1)
 	{
-		perror("Error:\n Fork failed.");
+		perror("error:\n Fork failed.");
 		exit(EXIT_FAILURE);
 	}
 	if (id == 0)
 		child_proccess(fd, argv, envp);
 	else
+	{
+		waitpid(id, NULL, WNOHANG);
 		parent_proccess(fd, argv, envp);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: asilveir <asilveir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:14:00 by asilveir          #+#    #+#             */
-/*   Updated: 2025/01/06 12:15:27 by asilveir         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:27:10 by asilveir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <fcntl.h> 
 # include <stdio.h>
+# include <sys/wait.h>
 # include "../libft/libft.h"
 
 void	execute_command(char *argv, char **envp);
