@@ -1,30 +1,30 @@
 # Pipex
 
-## Sobre o Projeto
+## About the project
 
-O **Pipex** é um projeto da 42 que desafia os alunos a implementarem uma versão simplificada da funcionalidade de pipes no Bash. O objetivo principal é consolidar o conhecimento sobre processos, redirecionamento de entrada e saída e comunicação entre processos em sistemas Unix.
+The **Pipex** is a 42 project that challenges students to implement a simplified version of the pipe functionality in Bash. The main objective is to consolidate knowledge about processes, input/output redirection, and inter-process communication in Unix systems.
 
 ---
 
-## Funcionalidades
+## Features
 
-- Simular o funcionamento do seguinte comando Bash:
+- Simulate the behavior of the following Bash command:
   ```bash
   cmd1 < file_in | cmd2 > file_out
   ```
-- Suporte ao uso de dois comandos em sequência conectados por um pipe.
-- Gerenciamento de arquivos de entrada e saída para redirecionamento correto.
-- Tratamento de erros apropriado, como:
-  - Arquivos inexistentes ou sem permissão.
-  - Comandos inválidos.
+- Support for using two commands in sequence connected by a pipe.
+- Management of input and output files for correct redirection.
+- Proper error handling, such as:
+  - Non-existent or permission-denied files.
+  - Invalid commands.
 
 ---
 
-## Tecnologias e Ferramentas
+## Technologies and Tools
 
-- **Linguagem**: C
-- **Sistema operacional**: Linux
-- **Funções POSIX**, como:
+- **Language**: C
+- **Operating System**: Linux
+- **POSIX functions**, such as:
   - `pipe()`
   - `dup2()`
   - `execve()`
@@ -32,14 +32,14 @@ O **Pipex** é um projeto da 42 que desafia os alunos a implementarem uma versã
 
 ---
 
-## Como Compilar
+## How to Compile
 
-Para compilar o projeto, certifique-se de ter o compilador **gcc** e o **Make** instalados. Use o seguinte comando:
+To compile the project, make sure you have the **gcc** compiler and **Make** installed. Use the following command:
 
 ```bash
 make
 ```
 
-O binário será gerado na raiz do projeto com o nome `pipex`.
+The binary will be generated at the root of the project with the name `pipex`.
 
 ---
